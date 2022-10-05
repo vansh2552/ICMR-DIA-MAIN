@@ -1,0 +1,182 @@
+<?php $_session_start() ; ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Data Import App</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../static/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../static/assets/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="../static/assets/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../static/assets/vendors/typicons/typicons.css">
+    <link rel="stylesheet" href="../static/assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="../static/assets/vendors/jquery-bar-rating/css-stars.css">
+    <link rel="stylesheet" href="../static/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <!-- End Plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../static/assets/css/shared/style.css">
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="../static/assets/css/demo_11/style.css">
+    <!-- End Layout styles -->
+    <link rel="shortcut icon" href="../static/assets/images/favicon.png" />
+  </head>
+  <body>
+    <div>
+      <?php echo "$_SESSION['username']"; ?>
+    </div>
+    <div class="container-scroller">
+      <!-- partial:partials/_horizontal-navbar.html -->
+      <nav class="navbar horizontal-layout col-lg-12 col-12 p-0">
+        <div class="container d-flex flex-row nav-top">
+          <div class="text-center navbar-brand-wrapper d-flex align-items-top " id="p-logo">
+            <a class="navbar-brand brand-logo" href="index.html">
+              </a>
+            <!--<a class="navbar-brand brand-logo-mini" href="index.html">
+               </a>-->
+          </div>
+          <div class="navbar-menu-wrapper d-flex align-items-center">
+		  <p class="data-import-text"></p>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item dropdown user-dropdown">
+                <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                 <!-- <div class="wrapper d-flex flex-column">
+                    <span class="profile-text">{{ username }}</span>
+                  </div>-->
+                 <!-- <div class="display-avatar bg-inverse-primary text-primary">A</div>-->
+                </a>
+               </li>
+            </ul>
+           
+          </div>
+        </div>
+        <div class="nav-bottom">
+          <div class="container">
+		  	<p style="text-align:center; margin-top: 1rem; font-weight:bold; font-size:24px; color:#fff;">Data Import App (i-DIA)</p>
+		  
+            
+          </div>
+        </div>
+      </nav>
+      
+      <div class="container-fluid page-body-wrapper">
+        <div class="main-panel container">
+          <div class="content-wrapper">
+            <div class="row">
+              <div class="col-12 grid-margin">
+                <div class="intro-banner">
+                  <div class="banner-image a3">
+                    <!--<img src="../static/assets/images/dashboard/banner_img.png" alt="banner image">-->
+                  </div>
+                  <div class="content-area">
+                    <h3 class="mb-0">Log In</h3>
+                    <!--<p class="mb-0">Need anything more to know more? Feel free to contact us at any point.</p>-->
+                  </div>
+                  <!--<a href="#" class="btn btn-light">Subscribe Now</a>-->
+                </div>
+              </div>
+            </div><!--
+            <div class="row">
+              <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">New Hospital</h4>
+                    <p class="card-description">If new hospital, then Upload your .CSV for generating configuration files</p>-->
+                    <form action="{{ url_for('login')}}" method="POST" enctype = "multipart/form-data" class="forms-sample">
+                    
+                      <div class="form-group">
+			<!--
+                        <label>.CSV file upload </label>
+                        <input type="file" name="fl" class="file-upload-default" value ="select file">
+                        <div class="input-group col-xs-12">
+                          <!-- <input type="text" class="form-control file-upload-info" disabled placeholder="Upload File">
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-info" type="submit" value = "upload CSV" name = "action">Upload</button>
+                          </span> 
+                          <br><br>
+                          <button class="btn btn-success mr-2" type="submit" value = "upload CSV" name = "action">Upload</button>
+                        </div>
+                      </div>
+                    <br>
+                    <br>
+                    <h4 class="card-title">Old Hospital</h4>
+                    <p class="card-description"> If already registered hospital, then upload your .csv and configuration files</p>
+                    
+                      <button type="submit" class="btn btn-success mr-2" name= "action" value="Registered hospital">Registered hospital</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Instructions</h4>
+                    <p class="card-description"> This Data Import App handles bulk import of data based upon easy to use CSV template with the given instructions. <br> <br>Please read the instructions carefully before uploading .csv file !</p>-->
+
+			<label>Username</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="user_name" placeholder="Username" id="user_name" required><br><br>
+			<label>Password</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" name="password" placeholder="Password" id="password" required><br><br>				
+                      <button type="submit" class="btn btn-success mr-2" name= "action" value="login">LogIn</button>
+		</form>
+				<script type="text/javascript">
+					var b='{{msg}}'
+					if(b!=""){
+
+						alert(b);
+					}
+				</script>
+                      <!--<button class="btn btn-light">Cancel</button>-->
+                    <br>
+                    <br>
+		<!--
+                    <h4 class="card-title">Demo Video</h4>
+                    <p class="card-description"> Click on the below button to view DIA demo video !</p>
+
+                      <button type="submit" class="btn btn-success mr-2" name= "action" value="demovideo">Demo-video</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+          </div>-->
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          <footer class="footer">
+            <div class="container clearfix">
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2019 <a href="#">ISRM Division, ICMR</a>. All rights reserved.</span>
+              <!--<span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i>
+              </span>-->
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../static/assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="../static/assets/vendors/chart.js/Chart.min.js"></script>
+    <script src="../static/assets/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
+    <script src="../static/assets/vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="../static/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="../static/assets/js/shared/off-canvas.js"></script>
+    <script src="../static/assets/js/shared/hoverable-collapse.js"></script>
+    <script src="../static/assets/js/shared/settings.js"></script>
+    <script src="../static/assets/js/shared/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="../static/assets/js/shared/widgets.js"></script>
+    <script src="../static/assets/js/demo_11/dashboard.js"></script>
+    <script src="../static/assets/js/demo_11/script.js"></script>
+    <!-- End custom js for this page -->
+  </body>
+
+</html>

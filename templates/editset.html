@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Data Import App</title>
+	<!-- plugins:css -->
+	<link rel="stylesheet" href="../static/assets/vendors/mdi/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../static/assets/vendors/flag-icon-css/css/flag-icon.min.css">
+	<link rel="stylesheet" href="../static/assets/vendors/ti-icons/css/themify-icons.css">
+	<link rel="stylesheet" href="../static/assets/vendors/typicons/typicons.css">
+	<link rel="stylesheet" href="../static/assets/vendors/css/vendor.bundle.base.css">
+	<!-- endinject -->
+	<!-- Plugin css for this page -->
+	<link rel="stylesheet" href="../static/assets/vendors/jquery-bar-rating/css-stars.css">
+	<link rel="stylesheet" href="../static/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+	<!-- End Plugin css for this page -->
+	<!-- inject:css -->
+	<link rel="stylesheet" href="../static/assets/css/shared/style.css">
+	<!-- endinject -->
+	<!-- Layout styles -->
+	<link rel="stylesheet" href="../static/assets/css/demo_11/style.css">
+	<!-- End Layout styles -->
+	<link rel="shortcut icon" href="../static/assets/images/favicon.png" />
+
+	<!--  -->
+	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"> -->
+
+	<!-- ####working delete link 1 and 4 below to remove bootstrap select library -->
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" /> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script> -->
+
+
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+	<!--<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.css"
+  rel="stylesheet"/>-->
+
+	<!-- MDB -->
+	<!--<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.js"
+></script>-->
+
+
+
+
+	<!--new delete this
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+	<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+	-->
+
+
+	<!--###################new
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>  
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">  
+	-->
+	<!--  -->
+
+
+	<!-- virtual select-->
+	<link rel="stylesheet" type="text/css" href="../static/assets/css/virtual-select-min.css">
+	<script type="text/javascript" src="../static/assets/css/virtual-select-min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../static/assets/css/virtualstyle.css">
+	<!-- <link rel="stylesheet" href="../static/assets/css/loading.css"> -->
+
+
+</head>
+
+<body>
+
+	<!--  Uncomment for loading screen
+	<div class="loader"><img src="../static/assets/images/Please Wait - Loading Pie.gif">"></div>
+	<script>
+		window.onload = function () {
+			//display loader on page load 
+			$('.loader').fadeOut();
+		}
+	</script>-->
+
+
+
+	<div class="container-scroller">
+		<!-- partial:partials/_horizontal-navbar.html -->
+		<nav class="navbar horizontal-layout col-lg-12 col-12 p-0">
+			<div class="container d-flex flex-row nav-top">
+				<div class="text-center navbar-brand-wrapper d-flex align-items-top " id="p-logo">
+					<a class="navbar-brand brand-logo" href="index.html"></a>
+					<!--<a class="navbar-brand brand-logo-mini" href="index.html">
+															</a>-->
+				</div>
+				<div class="navbar-menu-wrapper d-flex align-items-center">
+					<p class="data-import-text"></p>
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item dropdown user-dropdown">
+							<a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown"
+								aria-expanded="false">
+								<div class="wrapper d-flex flex-column">
+									<span class="profile-text">{{username}}</span>
+									<!--<span class="user-designation">Admin</span>-->
+								</div>
+								<a href="{{ url_for('logout')}}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+								<!--<div class="display-avatar bg-inverse-primary text-primary">A</div>-->
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="nav-bottom">
+				<div class="container">
+					<p style="text-align:center; margin-top: 1rem; font-weight:bold; font-size:24px; color:#fff;">Data
+						Import App</p>
+				</div>
+			</div>
+		</nav>
+
+
+
+
+		<div class="container-fluid page-body-wrapper">
+			<div class="main-panel container">
+				<div class="content-wrapper">
+					<div class="row">
+						<div class="col-12 grid-margin d-none d-lg-block">
+							<div class="intro-banner">
+								<div class="banner-image a3">
+									<!-- <img src="assets/images/dashboard/banner_img.png" alt="banner image">-->
+								</div>
+								<div class="content-area">
+									<h3 class="mb-0">Mapping of Option Sets</h3>
+									<!--<p class="mb-0">Need anything more to know more? Feel free to contact us at any point.</p>-->
+								</div>
+								<!--<a href="#" class="btn btn-light">Subscribe Now</a>-->
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12 grid-margin stretch-card">
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Mapping of Option Sets</h4>
+									<!--<p class="card-description">Use class <code>.accordion-multiple-filled</code> for multiple filled styling</p>-->
+									<div class="accordion accordion-multiple-filled" id="accordion-3" role="tablist">
+
+
+
+										<div class="card">
+											<div class="card-header" role="tab" id="headingSeven-3">
+												<h5 class="mb-0">
+													<a class="collapsed" data-toggle="collapse" href="#collapseSeven-3"
+														aria-expanded="false" aria-controls="collapseSeven-3">Column:
+														Organism Name</a>
+												</h5>
+											</div>
+											<div id="collapseSeven-3" class="collapse" role="tabpanel"
+												aria-labelledby="headingSeven-3" data-parent="#accordion-3">
+												<div class="card-body">
+													<div class="row">
+														<div class="col-md-12">
+															<form action="/login/editing_mapping" method="POST"
+																enctype="multipart/form-data" class="forms-sample">
+																<div class="form-group">
+																	{%for i in range(orgmap|length)%}
+																	<label for="exampleSelectDanger">{% for coldb7 in
+																		orgmap[i] %}{{coldb7}}{% endfor %}</label>
+																	<select name="om{{i}}"
+																		class="form-control border-danger"
+																		id="exampleSelectDanger">
+																		<option selected>select option set from the list
+																		</option>
+																		{% for col in optio[0:] %}
+																		<option value="{{col}}">{{col}}</option>
+																		{% endfor %}
+																		{% for key,value in diog.items()%}
+																		{% for key1,value1 in dinew.items()%}
+																		{%if i==key1 %}
+																		{%if (value|int()==value1|int()) %}
+																		<option selected>{{key}}</option>
+																		{% endif%}
+																		{% endif%}
+																		{% endfor %}
+																		{% endfor %}
+																	</select>
+																	{% endfor %}
+																</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+
+
+
+
+
+										<div class="card">
+											<div class="card-header" role="tab" id="headingSix-3">
+												<h5 class="mb-0">
+													<a class="collapsed" data-toggle="collapse" href="#collapseSix-3"
+														aria-expanded="false" aria-controls="collapseSix-3">Column:
+														Sample Type</a>
+												</h5>
+											</div>
+
+											<div id="collapseSix-3" class="collapse" role="tabpanel"
+												aria-labelledby="headingSix-3" data-parent="#accordion-3">
+												<div class="card-body">
+													<div class="row">
+														<div class="col-md-12">
+															<!-- <form action="/mapping" method="POST" enctype = "multipart/form-data" class="forms-sample">-->
+															<div class="form-group">
+																{%for i in range(samplemap|length)%}
+																<label for="exampleSelectDanger">{% for coldb6 in
+																	samplemap[i] %}{{coldb6}}{% endfor %}</label>
+																<select name="sm{{i}}"
+																	class="form-control border-danger"
+																	id="exampleSelectDanger">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in opts[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																	{% for key,value in dism.items()%}
+																	{% for key1,value1 in dismnew.items()%}
+																	{%if i==key1 %}
+																	{%if (value|int()==value1|int()) %}
+																	<option selected>{{key}}</option>
+																	{% endif%}
+																	{% endif%}
+																	{% endfor %}
+																	{% endfor %}
+																</select>
+																{% endfor %}
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+
+
+										<div class="card">
+											<div class="card-header" role="tab" id="headingEight-3">
+												<h5 class="mb-0">
+													<a class="collapsed" data-toggle="collapse" href="#collapseEight-3"
+														aria-expanded="false" aria-controls="collapseEight-3">Column:
+														Antibiotic Name</a>
+												</h5>
+											</div>
+											<div id="collapseEight-3" class="collapse" role="tabpanel"
+												aria-labelledby="headingEight-3" data-parent="#accordion-3">
+												<div class="card-body">
+													<div class="row">
+														<div class="col-md-12">
+															<form action="/login/editing_mapping" method="POST"
+																enctype="multipart/form-data" class="forms-sample">
+																<div class="form-group">
+																	{%for i in range(antimap|length)%}
+																	<label for="exampleSelectDanger">{% for coldb7 in
+																		antimap[i] %}{{coldb7}}{% endfor %}</label>
+																	<select name="anti{{i}}"
+																		class="form-control border-danger"
+																		id="exampleSelectDanger">
+																		<option selected>select option set from the list
+																		</option>
+																		{% for col in optanti[0:] %}
+																		<option value="{{col}}">{{col}}</option>
+																		{% endfor %}
+																		{% for key,value in dianti.items()%}
+																		{% for key1,value1 in diantinew.items()%}
+																		{%if i==key1 %}
+																		{%if (value|int()==value1|int()) %}
+																		<option selected>{{key}}</option>
+																		{% endif%}
+																		{% endif%}
+																		{% endfor %}
+																		{% endfor %}
+																	</select>
+																	{% endfor %}
+																</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+
+
+										<div class="card">
+											<div class="card-header" role="tab" id="headingNine-3">
+												<h5 class="mb-0">
+													<a class="collapsed" data-toggle="collapse" href="#collapseNine-3"
+														aria-expanded="false" aria-controls="collapseNine-3">Column:
+														Department</a>
+												</h5>
+											</div>
+											<div id="collapseNine-3" class="collapse" role="tabpanel"
+												aria-labelledby="headingNine-3" data-parent="#accordion-3">
+												<div class="card-body">
+													<div class="row">
+														<div class="col-md-12">
+															<form action="/login/editing_mapping" method="POST"
+																enctype="multipart/form-data" class="forms-sample">
+																<div class="form-group">
+																	{%for i in range(deptmap|length)%}
+																	<label for="exampleSelectDanger">{% for coldb7 in
+																		deptmap[i] %}{{coldb7}}{% endfor %}</label>
+																	<select name="dept{{i}}"
+																		class="form-control border-danger"
+																		id="exampleSelectDanger">
+																		<option selected>select option set from the list
+																		</option>
+																		{% for col in optdept[0:] %}
+																		<option value="{{col}}">{{col}}</option>
+																		{% endfor %}
+																		{% for key,value in didept.items()%}
+																		{% for key1,value1 in dideptnew.items()%}
+																		{%if i==key1 %}
+																		{%if (value|int()==value1|int()) %}
+																		<option selected>{{key}}</option>
+																		{% endif%}
+																		{% endif%}
+																		{% endfor %}
+																		{% endfor %}
+																	</select>
+																	{% endfor %}
+																</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+
+
+
+										<a href="{{ url_for('editing_mapping')}}">
+											<button type="submit" class="btn btn-success mr-2">Save mapping of option
+												sets</button>
+										</a>
+										<!--<button class="btn btn-light">Cancel</button>-->
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- content-wrapper ends -->
+	<!-- partial:partials/_footer.html -->
+	<footer class="footer">
+		<div class="container clearfix">
+			<span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2019 <a
+					href="#">ISRM Division, ICMR</a>. All rights reserved.</span>
+			<!--<span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i>
+														</span>-->
+		</div>
+	</footer>
+	<!-- partial -->
+	</div>
+	<!-- main-panel ends -->
+	</div>
+	<!-- page-body-wrapper ends -->
+	</div>
+	<!-- container-scroller -->
+	<!-- plugins:js -->
+	<!-- <script src="../static/assets/vendors/js/vendor.bundle.base.js"></script> -->
+	<!-- endinject -->
+	<!-- Plugin js for this page -->
+	<script src="../static/assets/vendors/chart.js/Chart.min.js"></script>
+	<script src="../static/assets/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
+	<script src="../static/assets/vendors/datatables.net/jquery.dataTables.js"></script>
+	<script src="../static/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+	<!-- End plugin js for this page -->
+	<!-- inject:js -->
+	<script src="../static/assets/js/shared/off-canvas.js"></script>
+	<script src="../static/assets/js/shared/hoverable-collapse.js"></script>
+	<script src="../static/assets/js/shared/settings.js"></script>
+	<script src="../static/assets/js/shared/todolist.js"></script>
+	<!-- endinject -->
+	<!-- Custom js for this page -->
+	<script src="../static/assets/js/shared/widgets.js"></script>
+	<script src="../static/assets/js/demo_11/dashboard.js"></script>
+	<script src="../static/assets/js/demo_11/script.js"></script>
+	<!-- End custom js for this page -->
+</body>
+
+</html>

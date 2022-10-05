@@ -1,0 +1,36 @@
+[
+    {
+        "reg_no": "patient_reg_num",
+        "date of opd visit_ admission": "admission_date",
+        "department": "hospital_department",
+        "prior_admission_in_last _3_months": "prior_admission",
+        "location": "location_type",
+        "infection_type": "infection_type",
+        "clinical_diagnosis": "clinical_diagnosis",
+        "comorbidity": "comorbidity",
+        "patient_with_devices": "devices_used"
+    },
+    {
+        "reg_no": "patient_reg_num",
+        "age": "age_year",
+        "gender": "gender",
+        "city_town_ village": "city_town_village",
+        "district": "district",
+        "state": "state",
+        "resident": "country",
+        "location_type": "location_type1",
+        "unit of age (days_months_years)": "Unit"
+    },
+    {
+        "lab_sample_id": "lab_sample_id",
+        "date_of_sample": "collection_date",
+        "type_of_sample": "sample_type",
+        "antibiotics_taken_for_3_days_in_last_1_month": "prescribed_antibiotic"
+    },
+    {
+        "antibiotic_id": "antibiotic_id",
+        "organism": "organism_id",
+        "identification_method": "identification_method",
+        "value": "value"
+    }
+]

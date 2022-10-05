@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Data Import App</title>
+	<!-- plugins:css -->
+	<link rel="stylesheet" href="../static/assets/vendors/mdi/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../static/assets/vendors/flag-icon-css/css/flag-icon.min.css">
+	<link rel="stylesheet" href="../static/assets/vendors/ti-icons/css/themify-icons.css">
+	<link rel="stylesheet" href="../static/assets/vendors/typicons/typicons.css">
+	<link rel="stylesheet" href="../static/assets/vendors/css/vendor.bundle.base.css">
+	<!-- endinject -->
+	<!-- Plugin css for this page -->
+	<link rel="stylesheet" href="../static/assets/vendors/jquery-bar-rating/css-stars.css">
+	<link rel="stylesheet" href="../static/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+	<!-- End Plugin css for this page -->
+	<!-- inject:css -->
+	<link rel="stylesheet" href="../static/assets/css/shared/style.css">
+	<!-- endinject -->
+	<!-- Layout styles -->
+	<link rel="stylesheet" href="../static/assets/css/demo_11/style.css">
+	<!-- End Layout styles -->
+	<link rel="shortcut icon" href="../static/assets/images/favicon.png" />
+
+	<!--  -->
+	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"> -->
+
+	<!-- ####working-->
+	<!-- <link rel="stylesheet" -->
+	<!-- href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" /> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script> -->
+
+
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+
+	<!--new delete this
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+	<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+	-->
+
+
+	<!--###################new
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>  
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">  
+	-->
+	<!--  -->
+	<link rel="stylesheet" href="../static/assets/css/loading.css">
+</head>
+
+<body>
+	<div class="loader">
+		<img src="../static/images/loading.gif" alt="Loading...">">
+	</div>
+	<script>
+		window.onload = function () {
+			//display loader on page load 
+			$('.loader').fadeOut();
+		}
+	</script>
+
+	<div class="container-scroller">
+		<!-- partial:partials/_horizontal-navbar.html -->
+		<nav class="navbar horizontal-layout col-lg-12 col-12 p-0">
+			<div class="container d-flex flex-row nav-top">
+				<div class="text-center navbar-brand-wrapper d-flex align-items-top " id="p-logo">
+					<a class="navbar-brand brand-logo" href="index.html"></a>
+					<!--<a class="navbar-brand brand-logo-mini" href="index.html">
+															</a>-->
+				</div>
+				<div class="navbar-menu-wrapper d-flex align-items-center">
+					<p class="data-import-text"></p>
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item dropdown user-dropdown">
+							<a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown"
+								aria-expanded="false">
+								<div class="wrapper d-flex flex-column">
+									<span class="profile-text">{{username}}</span>
+									<!--<span class="user-designation">Admin</span>-->
+								</div>
+								<a href="{{ url_for('logout')}}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+								<!--<div class="display-avatar bg-inverse-primary text-primary">A</div>-->
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="nav-bottom">
+				<div class="container">
+					<p style="text-align:center; margin-top: 1rem; font-weight:bold; font-size:24px; color:#fff;">Data
+						Import App</p>
+				</div>
+			</div>
+		</nav>
+
+
+		<div class="container-fluid page-body-wrapper">
+			<div class="main-panel container">
+				<div class="content-wrapper">
+					<div class="row">
+						<div class="col-12 grid-margin d-none d-lg-block">
+							<div class="intro-banner">
+								<div class="banner-image a3">
+									<!-- <img src="assets/images/dashboard/banner_img.png" alt="banner image">-->
+								</div>
+								<div class="content-area">
+									<h3 class="mb-0">Mapping of Option Sets</h3>
+									<!--<p class="mb-0">Need anything more to know more? Feel free to contact us at any point.</p>-->
+								</div>
+								<!--<a href="#" class="btn btn-light">Subscribe Now</a>-->
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12 grid-margin stretch-card">
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Mapping of Option Sets</h4>
+									<!--<p class="card-description">Use class <code>.accordion-multiple-filled</code> for multiple filled styling</p>-->
+									<div class="accordion accordion-multiple-filled" id="accordion-3" role="tablist">
+										<div class="card">
+
+
+											<div class="card-header" role="tab" id="headingOne-3">
+												<h5 class="mb-0">
+													<a data-toggle="collapse" href="#collapseOne-3"
+														aria-expanded="false" aria-controls="collapseOne-3">Column:
+														Gender</a>
+												</h5>
+											</div>
+											<div id="collapseOne-3" class="collapse" role="tabpanel"
+												aria-labelledby="headingOne-3" data-parent="#accordion-3">
+												<div class="card-body">
+													<div class="row">
+														<div class="col-md-12" style="z-index: 20">
+															<form action="/login/mapping_optionset" method="POST"
+																enctype="multipart/form-data" class="forms-sample">
+																<div class="form-group" style="z-index: 10">
+																	<label for="exampleSelectPrimary">Male</label>
+																	<script type="text/javascript">
+																		$(document).ready(function () {
+																			$(".js-example-placeholder-multiple").select2({
+																				placeholder: "select option set from the list"
+																			});
+																		});
+
+																	</script>
+																	<select name="mal"
+																		class="js-example-placeholder-multiple js-states form-control"
+																		style="width: 100%" multiple="multiple">
+																		{% for col in optg[0:] %}
+																		<option value="{{col}}">{{col}}</option>
+																		{% endfor %}
+																	</select>
+
+																</div>
+																<div class="form-group">
+																	<label for="exampleSelectInfo">Female</label>
+
+																	<script type="text/javascript">
+																		$(document).ready(function () {
+																			$(".js-example-placeholder-multiple").select2({
+																				placeholder: "select option set from the list"
+																			});
+																		});
+
+																	</script>
+																	<!--####### working -->
+																	<select name="fem"
+																		class="js-example-placeholder-multiple js-states form-control"
+																		style="width: 100%" multiple="multiple">
+																		{% for col in optg[0:] %}
+																		<option value="{{col}}">{{col}}</option>
+																		{% endfor %}
+																	</select>
+
+
+																</div>
+																<div class="form-group">
+																	<label
+																		for="exampleSelectSuccess">Transgender</label>
+																	<!--
+																	<select name="trans"
+																		class="form-control border-success"
+																		id="exampleSelectSuccess">
+																		<option selected>select option set from the list
+																		</option>
+																		{% for col in optg[0:] %}
+																		<option value="{{col}}">{{col}}</option>
+																		{% endfor %}
+																	</select>
+																-->
+
+
+																	<script type="text/javascript">
+																		$(document).ready(function () {
+																			$(".js-example-placeholder-multiple").select2({
+																				placeholder: "select option set from the list"
+																			});
+																		});
+
+																	</script>
+																	<!--####### working -->
+																	<select name="trans"
+																		class="js-example-placeholder-multiple js-states form-control"
+																		style="width: 100%" multiple="multiple">
+																		{% for col in optg[0:] %}
+																		<option value="{{col}}">{{col}}</option>
+																		{% endfor %}
+																	</select>
+
+
+																</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="card">
+											<div class="card-header" role="tab" id="headingThree-3">
+												<h5 class="mb-0">
+													<a class="collapsed" data-toggle="collapse" href="#collapseThree-3"
+														aria-expanded="false" aria-controls="collapseThree-3">Column:
+														Country</a>
+												</h5>
+											</div>
+											<div id="collapseThree-3" class="collapse" role="tabpanel"
+												aria-labelledby="headingThree-3" data-parent="#accordion-3">
+												<div class="card-body">
+
+													<div class="row">
+														<div class="col-md-12">
+															<!--<form action="/mapping" method="POST" enctype = "multipart/form-data" class="forms-sample">-->
+															<div class="form-group">
+																<label for="exampleSelectDanger">India</label>
+
+																<!--
+																<select name="in" class="form-control border-danger"
+																	id="exampleSelectDanger">
+																	<option value=" ">select option set from the list
+																	</option>
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in optc[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>-->
+
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<!--####### working -->
+																<select name="in"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in optc[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+
+
+
+
+															</div>
+															<div class="form-group">
+																<label for="exampleSelectWarning">Outside India</label>
+
+																<!--
+																<select name="out_in"
+																	class="form-control border-warning"
+																	id="exampleSelectWarning">
+																	<option value=" ">select option set from the list
+																	</option>
+																	
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in optc[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>-->
+
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<!--####### working -->
+																<select name="out_in"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in optc[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+
+
+
+
+
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="card">
+											<div class="card-header" role="tab" id="headingfourteen-3">
+												<h5 class="mb-0">
+													<a class="collapsed" data-toggle="collapse"
+														href="#collapsefourteen-3" aria-expanded="false"
+														aria-controls="collapsefourteen-3">Column: State & District</a>
+												</h5>
+											</div>
+											<div id="collapsefourteen-3" class="collapse" role="tabpanel"
+												aria-labelledby="headingfourteen-3" data-parent="#accordion-3">
+												<!-- <div class="panel-group" id="accord"> -->
+												<div class="card-body">
+													<div class="row">
+														<div class="col-md-12">
+															<!--<form action="/mapping" method="POST" enctype = "multipart/form-data" class="forms-sample">-->
+															<div class="form-group">
+																{% for key, value in state_district_dict.items() %}
+																<div class="card">
+																	<div class="card-header" role="tab"
+																		id="headingfourteen{{key[0:4]}}-3">
+
+																		<h5 class="mb-0">
+
+																			<a class="collapsed" data-toggle="collapse"
+																				href="#collapsefourteen{{key[0:4]}}-3"
+																				aria-expanded="false"
+																				aria-controls="collapsefourteen{{key[0:4]}}-3">{{key}}</a>
+																			<!-- <label for="cbTravel" style="font-size: 17px">Travel</label>  -->
+																			<!-- </h5>
+																	</div>
+																	<div id="collapsefourteen{{key[0:4]}}-3"
+																		class="collapse" role="tabpanel"
+																		aria-labelledby="headingfourteen{{key[0:4]}}-3"> -->
+
+																		</h5>
+																	</div>
+																	<div id="collapsefourteen{{key[0:4]}}-3"
+																		class="collapse" role="tabpanel"
+																		aria-labelledby="headingfourteen{{key[0:4]}}-3"
+																		data-parent="#collapsefourteen-3">
+																		<div class="form-group">
+																			<select name="state{{key}}"
+																				class="form-control border-danger"
+																				id="exampleSelectWarning{{key[0:4]}}">
+																				<option selected>select option set
+																					from the list</option>
+																				{% for cols in optstate[0:] %}
+																				<option value="{{cols}}">{{cols}}
+																				</option>
+																				{% endfor %}
+																			</select>
+																		</div>
+																		<!-- </h5>
+																	</div> this was before
+																	<div id="collapsefourteen{{key[0:4]}}-3"
+																		class="collapse" role="tabpanel"
+																		aria-labelledby="headingfourteen{{key[0:4]}}-3"> -->
+																		<div class="card-body">
+
+																			<div class="row">
+																				<label for="exampleSelectSuccess">Select
+																					District</label>
+																				<div class="col-md-12">
+																					<!--<form action="/mapping" method="POST" enctype = "multipart/form-data" class="forms-sample">-->
+																					<div class="form-group">
+																						{% for col in value[0:] %}
+																						<label
+																							for="exampleSelectDanger{{col}}">{{col}}</label>
+																						<select
+																							name="dis{{key}}_{{col}}"
+																							class="form-control border-danger"
+																							id="exampleSelectDanger{{col}}">
+																							<option selected>select
+																								option set from the list
+																							</option>
+																							{% for cols in
+																							optdistrict[0:] %}
+																							<option value="{{cols}}">
+																								{{cols}}</option>
+																							{% endfor %}
+																						</select>
+																						{% endfor %}
+																					</div>
+																				</div>
+																			</div>
+
+																		</div>
+
+																	</div>
+
+																</div> {% endfor %}
+															</div>
+														</div>
+													</div>
+												</div>
+												<!--  -->
+												<!-- </div> -->
+											</div>
+										</div>
+
+
+
+										<div class="card">
+											<div class="card-header" role="tab" id="headingTwo-3">
+												<h5 class="mb-0">
+													<a class="collapsed" data-toggle="collapse" href="#collapseTwo-3"
+														aria-expanded="false" aria-controls="collapseTwo-3"> Column:
+														Location Type(Patient)</a>
+												</h5>
+											</div>
+											<div id="collapseTwo-3" class="collapse" role="tabpanel"
+												aria-labelledby="headingTwo-3" data-parent="#accordion-3">
+												<div class="card-body">
+													<div class="row">
+														<div class="col-md-12">
+															<!--<form action="/mapping" method="POST" enctype = "multipart/form-data" class="forms-sample">-->
+															<div class="form-group">
+																<label for="exampleSelectDanger">Urban</label>
+																<!--
+
+																<select name="urb" class="form-control border-danger"
+																	id="exampleSelectDanger">
+																	<option value=" ">select option set from the list
+																	</option>
+																	{% for col in optl[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+															-->
+
+
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<!--####### working -->
+																<select name="urb"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in optl[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+
+
+
+															</div>
+															<div class="form-group">
+																<label for="exampleSelectWarning">Rural</label>
+
+																<!--
+																<select name="rur" class="form-control border-warning"
+																	id="exampleSelectWarning">
+																	<option value=" ">select option set from the list
+																	</option>
+																	{% for col in optl[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+															-->
+
+
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<!--####### working -->
+																<select name="rur"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in optl[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+
+										<div class="card">
+											<div class="card-header" role="tab" id="headingthirteen-3">
+												<h5 class="mb-0">
+													<a class="collapsed" data-toggle="collapse"
+														href="#collapsethirteen-3" aria-expanded="false"
+														aria-controls="collapseEight-3"> Column: Unit of Age</a>
+												</h5>
+											</div>
+											<div id="collapsethirteen-3" class="collapse" role="tabpanel"
+												aria-labelledby="headingthirteen-3" data-parent="#accordion-3">
+												<div class="card-body">
+													<div class="row">
+														<div class="col-md-12">
+															<!--<form action="/mapping" method="POST" enctype = "multipart/form-data" class="forms-sample">-->
+															<div class="form-group">
+																<label for="exampleSelectDanger">Day_Unit</label>
+
+
+																<!-- <select name="days" class="form-control border-danger"
+																	id="exampleSelectDanger1">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in optage[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select> -->
+
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<!--####### working -->
+																<select name="days"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in optage[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+
+															</div>
+															<div class="form-group">
+																<label for="exampleSelectWarning">Month_Unit</label>
+
+																<!-- <select name="months"
+																	class="form-control border-warning"
+																	id="exampleSelectWarning1">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in optage[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select> -->
+
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<!--####### working -->
+																<select name="months"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in optage[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+
+															</div>
+
+															<div class="form-group">
+																<label for="exampleSelectWarning">Year_Unit</label>
+																<!-- <select name="years" class="form-control border-warning"
+																	id="exampleSelectWarning2">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in optage[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select> -->
+
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<!--####### working -->
+																<select name="years"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in optage[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+
+															</div>
+
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="card">
+											<div class="card-header" role="tab" id="headingeight-3">
+												<h5 class="mb-0">
+													<a class="collapsed" data-toggle="collapse" href="#collapseEight-3"
+														aria-expanded="false" aria-controls="collapseEight-3"> Column:
+														Location Type(Hospital)</a>
+												</h5>
+											</div>
+											<div id="collapseEight-3" class="collapse" role="tabpanel"
+												aria-labelledby="headingeight-3" data-parent="#accordion-3">
+												<div class="card-body">
+													<div class="row">
+														<div class="col-md-12">
+															<!--<form action="/mapping" method="POST" enctype = "multipart/form-data" class="forms-sample">-->
+															<div class="form-group">
+																<label for="exampleSelectDanger">ICU</label>
+																<!-- <select name="loc_icu"
+																	class="form-control border-danger"
+																	id="exampleSelectDanger1">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in optk[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select> -->
+
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<!--####### working -->
+																<select name="loc_icu"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in optk[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+
+
+															</div>
+															<div class="form-group">
+																<label for="exampleSelectWarning">WARD</label>
+																<!-- <select name="loc_ward"
+																	class="form-control border-warning"
+																	id="exampleSelectWarning1">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in optk[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select> -->
+
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<!--####### working -->
+																<select name="loc_ward"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in optk[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+															</div>
+
+															<div class="form-group">
+																<label for="exampleSelectWarning">OPD</label>
+																<!-- <select name="loc_opd"
+																	class="form-control border-warning"
+																	id="exampleSelectWarning2">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in optk[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select> -->
+
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<!--####### working -->
+																<select name="loc_opd"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in optk[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+															</div>
+
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+
+
+										<div class="card">
+											<div class="card-header" role="tab" id="headingnine-3">
+												<h5 class="mb-0">
+													<a class="collapsed" data-toggle="collapse" href="#collapseNine-3"
+														aria-expanded="false" aria-controls="collapseNine-3"> Column:
+														Prior Admission</a>
+												</h5>
+											</div>
+											<div id="collapseNine-3" class="collapse" role="tabpanel"
+												aria-labelledby="headingnine-3" data-parent="#accordion-3">
+												<div class="card-body">
+													<div class="row">
+														<div class="col-md-12">
+															<!--<form action="/mapping" method="POST" enctype = "multipart/form-data" class="forms-sample">-->
+															<div class="form-group">
+																<label for="exampleSelectDanger">ICU</label>
+																<select name="icu" class="form-control border-danger"
+																	id="exampleSelectDanger">
+																	<option value=" ">select option set from the list
+																	</option>
+																	{% for col in optp[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+
+																<!--
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<select name="icu"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in optp[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>-->
+
+
+															</div>
+															<div class="form-group">
+																<label for="exampleSelectWarning">Ward</label>
+																<select name="ward" class="form-control border-warning"
+																	id="exampleSelectWarning">
+																	<option value=" ">select option set from the list
+																	</option>
+																	{% for col in optp[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+																<!--
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<select name="ward"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in optp[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>-->
+
+
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+										<div class="card">
+											<div class="card-header" role="tab" id="headingFive-3">
+												<h5 class="mb-0">
+													<a class="collapsed" data-toggle="collapse" href="#collapseFive-3"
+														aria-expanded="false" aria-controls="collapseFive-3">Column:
+														Hospital Department</a>
+												</h5>
+											</div>
+											<div id="collapseFive-3" class="collapse" role="tabpanel"
+												aria-labelledby="headingFive-3" data-parent="#accordion-3">
+												<div class="card-body">
+													<div class="row">
+														<div class="col-md-12">
+															<!-- <form action="/mapping" method="POST" enctype = "multipart/form-data" class="forms-sample">-->
+															<div class="form-group">
+																{%for i in range(deptmap|length)%}
+																<label for="exampleSelectDanger">{% for coldb5 in
+																	deptmap[i] %}{{coldb5}}{% endfor %}</label>
+																<select name="hm{{i}}"
+																	class="form-control border-danger"
+																	id="exampleSelectDanger">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in opth[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+
+																<!-- <script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<select name="hm{{i}}"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in opth[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select> -->
+																{%endfor%}
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="card">
+											<div class="card-header" role="tab" id="headingten-3">
+												<h5 class="mb-0">
+													<a class="collapsed" data-toggle="collapse" href="#collapseTen-3"
+														aria-expanded="false" aria-controls="collapseTen-3">Column:
+														Comorbidity</a>
+												</h5>
+											</div>
+											<div id="collapseTen-3" class="collapse" role="tabpanel"
+												aria-labelledby="headingten-3" data-parent="#accordion-3">
+												<div class="card-body">
+													<div class="row">
+														<div class="col-md-12">
+															<!-- <form action="/mapping" method="POST" enctype = "multipart/form-data" class="forms-sample">-->
+															<div class="form-group">
+																<label for="exampleSelectDanger">Malignancy</label>
+																<select name="malig" class="form-control border-danger"
+																	id="exampleSelectDanger">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in com[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+																<!--
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<select name="malig"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in com[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>-->
+															</div>
+															<div class="form-group">
+																<label for="exampleSelectWarning">Diabetes
+																	mellitus</label>
+																<select name="diab_mell"
+																	class="form-control border-warning"
+																	id="exampleSelectWarning">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in com[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+																<!--
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<select name="diab_mell"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in com[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>-->
+															</div>
+															<div class="form-group">
+																<label for="exampleSelectDanger">Transplantation</label>
+																<select name="transplant"
+																	class="form-control border-danger"
+																	id="exampleSelectDanger">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in com[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+																<!--
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<select name="transplant"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in com[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>-->
+
+
+
+															</div>
+															<div class="form-group">
+																<label for="exampleSelectWarning">COVID19</label>
+																<select name="covid" class="form-control border-warning"
+																	id="exampleSelectWarning">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in com[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+																<!--
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<select name="covid"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in com[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>-->
+															</div>
+
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="card">
+											<div class="card-header" role="tab" id="headingeleven-3">
+												<h5 class="mb-0">
+													<a class="collapsed" data-toggle="collapse" href="#collapseEleven-3"
+														aria-expanded="false" aria-controls="collapseEleven-3">Column:
+														Infection Type</a>
+												</h5>
+											</div>
+											<div id="collapseEleven-3" class="collapse" role="tabpanel"
+												aria-labelledby="headingeleven-3" data-parent="#accordion-3">
+												<div class="card-body">
+													<div class="row">
+														<div class="col-md-12">
+															<!-- <form action="/mapping" method="POST" enctype = "multipart/form-data" class="forms-sample">-->
+															<div class="form-group">
+																<label for="exampleSelectDanger">Community Acquired
+																	Infection</label>
+																<!-- <select name="com_acq_inf"
+																	class="form-control border-danger"
+																	id="exampleSelectDanger">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in inf[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select> -->
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<!--####### working -->
+																<select name="com_acq_inf"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in inf[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+															</div>
+															<div class="form-group">
+																<label for="exampleSelectWarning">Health Care Associated
+																	Infection</label>
+																<!-- <select name="heal_care_asso_inf"
+																	class="form-control border-warning"
+																	id="exampleSelectWarning">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in inf[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select> -->
+
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<!--####### working -->
+																<select name="heal_care_asso_inf"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in inf[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+															</div>
+
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="card">
+											<div class="card-header" role="tab" id="headingtwelve-3">
+												<h5 class="mb-0">
+													<a class="collapsed" data-toggle="collapse" href="#collapseTwelve-3"
+														aria-expanded="false" aria-controls="collapseTwelve-3">Column:
+														Patient With Devices</a>
+												</h5>
+											</div>
+											<div id="collapseTwelve-3" class="collapse" role="tabpanel"
+												aria-labelledby="headingtwelve-3" data-parent="#accordion-3">
+												<div class="card-body">
+													<div class="row">
+														<div class="col-md-12">
+															<!-- <form action="/mapping" method="POST" enctype = "multipart/form-data" class="forms-sample">-->
+															<div class="form-group">
+																<label for="exampleSelectDanger">Central line
+																	catheter</label>
+																<select name="cen_lin_cat"
+																	class="form-control border-danger"
+																	id="exampleSelectDanger">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in dev[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+																<!--
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<select name="cen_lin_cat"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in dev[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>-->
+															</div>
+															<div class="form-group">
+																<label for="exampleSelectWarning">Endotracheal
+																	tube</label>
+																<select name="endo_tube"
+																	class="form-control border-warning"
+																	id="exampleSelectWarning">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in dev[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+																<!--
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<select name="endo_tube"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in dev[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>-->
+															</div>
+															<div class="form-group">
+																<label for="exampleSelectDanger">Mechanical
+																	ventilator</label>
+																<select name="mech_vent"
+																	class="form-control border-danger"
+																	id="exampleSelectDanger">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in dev[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+																<!--																
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<select name="mech_vent"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in dev[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>-->
+															</div>
+															<div class="form-group">
+																<label for="exampleSelectWarning">Urinary
+																	catheter</label>
+																<select name="urin_cath"
+																	class="form-control border-warning"
+																	id="exampleSelectWarning">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in dev[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+																<!--
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<select name="urin_cath"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in dev[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>-->
+															</div>
+															<div class="form-group">
+																<label for="exampleSelectDanger">Other vascular access
+																	lines</label>
+																<select name="oth_vas_acc_lin"
+																	class="form-control border-danger"
+																	id="exampleSelectDanger">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in dev[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+																<!--
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<select name="oth_vas_acc_lin"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in dev[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>-->
+															</div>
+
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+										<div class="card">
+											<div class="card-header" role="tab" id="headingSix-3">
+												<h5 class="mb-0">
+													<a class="collapsed" data-toggle="collapse" href="#collapseSix-3"
+														aria-expanded="false" aria-controls="collapseSix-3">Column:
+														Sample Type</a>
+												</h5>
+											</div>
+											<div id="collapseSix-3" class="collapse" role="tabpanel"
+												aria-labelledby="headingSix-3" data-parent="#accordion-3">
+												<div class="card-body">
+													<div class="row">
+														<div class="col-md-12">
+															<!-- <form action="/mapping" method="POST" enctype = "multipart/form-data" class="forms-sample">-->
+															<div class="form-group">
+																{%for i in range(samplemap|length)%}
+																<label for="exampleSelectDanger">{% for coldb6 in
+																	samplemap[i] %}{{coldb6}}{% endfor %}</label>
+																<select name="sm{{i}}"
+																	class="form-control border-danger"
+																	id="exampleSelectDanger">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in opts[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+																<!-- <script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<select name="sm{{i}}"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in opts[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select> -->
+																{%endfor%}
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="card">
+											<div class="card-header" role="tab" id="headingSeven-3">
+												<h5 class="mb-0">
+													<a class="collapsed" data-toggle="collapse" href="#collapseSeven-3"
+														aria-expanded="false" aria-controls="collapseSeven-3">Column:
+														Organism Name</a>
+												</h5>
+											</div>
+											<div id="collapseSeven-3" class="collapse" role="tabpanel"
+												aria-labelledby="headingSeven-3" data-parent="#accordion-3">
+												<div class="card-body">
+													<div class="row">
+														<div class="col-md-12">
+															<!-- <form action="/mapping" method="POST" enctype = "multipart/form-data" class="forms-sample">-->
+															<div class="form-group">
+																{%for i in range(orgmap|length)%}
+																<label for="exampleSelectDanger">{% for coldb7 in
+																	orgmap[i] %}{{coldb7}}{% endfor %}</label>
+																<select name="om{{i}}"
+																	class="form-control border-danger"
+																	id="exampleSelectDanger">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in optio[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+
+																<!-- <script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<select name="om{{i}}"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	</option>
+																	{% for col in optio[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select> -->
+																{%endfor%}
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="card">
+											<div class="card-header" role="tab" id="headingFour-3">
+												<h5 class="mb-0">
+													<a class="collapsed" data-toggle="collapse" href="#collapseFour-3"
+														aria-expanded="false" aria-controls="collapseFour-3">Column:
+														Identification Method</a>
+												</h5>
+											</div>
+											<div id="collapseFour-3" class="collapse" role="tabpanel"
+												aria-labelledby="headingFour-3" data-parent="#accordion-3">
+												<div class="card-body">
+													<div class="row">
+														<div class="col-md-12">
+															<!-- <form action="/mapping" method="POST" enctype = "multipart/form-data" class="forms-sample">-->
+															<div class="form-group">
+																<label for="exampleSelectDanger">Biochemical
+																	test</label>
+																<!-- <select name="biochem_test"
+																	class="form-control border-danger"
+																	id="exampleSelectDanger">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in opti[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select> -->
+
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<!--####### working -->
+																<select name="biochem_test"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in opti[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+															</div>
+															<div class="form-group">
+																<label for="exampleSelectWarning">Proteomics</label>
+																<!-- <select name="proteomics"
+																	class="form-control border-warning"
+																	id="exampleSelectWarning">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in opti[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select> -->
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<!--####### working -->
+																<select name="proteomics"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in opti[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+															</div>
+															<div class="form-group">
+																<label for="exampleSelectDanger">Vitek-2</label>
+																<!-- <select name="vitek" class="form-control border-danger"
+																	id="exampleSelectDanger">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in opti[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select> -->
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<!--####### working -->
+																<select name="vitek"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in opti[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+															</div>
+															<div class="form-group">
+																<label for="exampleSelectWarning">MaldiToff</label>
+																<!-- <select name="maldi" class="form-control border-warning"
+																	id="exampleSelectWarning">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in opti[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select> -->
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<!--####### working -->
+																<select name="maldi"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in opti[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+															</div>
+															<div class="form-group">
+																<label for="exampleSelectDanger">16s rRNA
+																	Sequencing</label>
+																<!-- <select name="rna_sequencing"
+																	class="form-control border-danger"
+																	id="exampleSelectDanger">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in opti[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select> -->
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<!--####### working -->
+																<select name="rna_sequencing"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in opti[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+															</div>
+															<div class="form-group">
+																<label for="exampleSelectWarning">Whole Genome
+																	Sequencing</label>
+																<!-- <select name="gnome_sequencing"
+																	class="form-control border-warning"
+																	id="exampleSelectWarning">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in opti[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select> -->
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<!--####### working -->
+																<select name="gnome_sequencing"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in opti[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+															</div>
+															<div class="form-group">
+																<label for="exampleSelectDanger">Conventional
+																	identification by microscopy/phenotype</label>
+																<!-- <select name="microscopy"
+																	class="form-control border-danger"
+																	id="exampleSelectDanger">
+																	<option selected>select option set from the list
+																	</option>
+																	{% for col in opti[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select> -->
+																<script type="text/javascript">
+																	$(document).ready(function () {
+																		$(".js-example-placeholder-multiple").select2({
+																			placeholder: "select option set from the list"
+																		});
+																	});
+
+																</script>
+																<!--####### working -->
+																<select name="microscopy"
+																	class="js-example-placeholder-multiple js-states form-control"
+																	style="width: 100%" multiple="multiple">
+																	{% for col in opti[0:] %}
+																	<option value="{{col}}">{{col}}</option>
+																	{% endfor %}
+																</select>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<button type="submit" class="btn btn-success mr-2">Save mapping of option
+											sets</button>
+										<!--<button class="btn btn-light">Cancel</button>-->
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- content-wrapper ends -->
+	<!-- partial:partials/_footer.html -->
+	<footer class="footer">
+		<div class="container clearfix">
+			<span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2019 <a
+					href="#">ISRM Division, ICMR</a>. All rights reserved.</span>
+			<!--<span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i>
+														</span>-->
+		</div>
+	</footer>
+	<!-- partial -->
+	</div>
+	<!-- main-panel ends -->
+	</div>
+	<!-- page-body-wrapper ends -->
+	</div>
+	<!-- container-scroller -->
+	<!-- plugins:js -->
+	<!-- <script src="../static/assets/vendors/js/vendor.bundle.base.js"></script> -->
+	<!-- endinject -->
+	<!-- Plugin js for this page -->
+	<script src="../static/assets/vendors/chart.js/Chart.min.js"></script>
+	<script src="../static/assets/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
+	<script src="../static/assets/vendors/datatables.net/jquery.dataTables.js"></script>
+	<script src="../static/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+	<!-- End plugin js for this page -->
+	<!-- inject:js -->
+	<script src="../static/assets/js/shared/off-canvas.js"></script>
+	<script src="../static/assets/js/shared/hoverable-collapse.js"></script>
+	<script src="../static/assets/js/shared/settings.js"></script>
+	<script src="../static/assets/js/shared/todolist.js"></script>
+	<!-- endinject -->
+	<!-- Custom js for this page -->
+	<script src="../static/assets/js/shared/widgets.js"></script>
+	<script src="../static/assets/js/demo_11/dashboard.js"></script>
+	<script src="../static/assets/js/demo_11/script.js"></script>
+	<!-- End custom js for this page -->
+</body>
+
+</html>

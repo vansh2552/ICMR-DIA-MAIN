@@ -1,0 +1,20 @@
+hospital_id,patient_reg_num,lab_sample_id,antibiotic_id,organism_id,hospital_department,sample_type,district,location_type,country,identification_method,gender,state,admission_date,collection_date
+,1412,PE 89,,1,Hematology,BAL,Mumbai City,Ward,India,Biochemical test,Female,Maharashtra,2022-04-04,2022-04-07
+,1412,PE 89,,1,Hematology,BAL,Mumbai City,Ward,India,Biochemical test,Female,Maharashtra,2022-04-04,2022-04-07
+,1412,PE 89,,1,Hematology,BAL,Mumbai City,Ward,India,Biochemical test,Female,Maharashtra,2022-04-04,2022-04-07
+,1412,PE 89,,1,Hematology,BAL,Mumbai City,Ward,India,Biochemical test,Female,Maharashtra,2022-04-04,2022-04-07
+,1412,PE 89,,1,Hematology,BAL,Mumbai City,Ward,India,Biochemical test,Female,Maharashtra,2022-04-04,2022-04-07
+,1412,PE 89,,1,Hematology,BAL,Mumbai City,Ward,India,Biochemical test,Female,Maharashtra,2022-04-04,2022-04-07
+,1412,PE 89,,1,Hematology,BAL,Mumbai City,Ward,India,Biochemical test,Female,Maharashtra,2022-04-04,2022-04-07
+,1412,PE 89,,1,Hematology,BAL,Mumbai City,Ward,India,Biochemical test,Female,Maharashtra,2022-04-04,2022-04-07
+,1412,PE 89,,1,Hematology,BAL,Mumbai City,Ward,India,Biochemical test,Female,Maharashtra,2022-04-04,2022-04-07
+,1556,PUS 472,,2,Hepatology,Sputum,,Ward,India,Biochemical test,Male,,2022-04-28,2022-04-28
+,1556,PUS 472,,2,Hepatology,Sputum,,Ward,India,Biochemical test,Male,,2022-04-28,2022-04-28
+,1556,PUS 472,,2,Hepatology,Sputum,,Ward,India,Biochemical test,Male,,2022-04-28,2022-04-28
+,1556,PUS 472,,2,Hepatology,Sputum,,Ward,India,Biochemical test,Male,,2022-04-28,2022-04-28
+,1556,PUS 472,,2,Hepatology,Sputum,,Ward,India,Biochemical test,Male,,2022-04-28,2022-04-28
+,1556,PUS 472,,2,Hepatology,Sputum,,Ward,India,Biochemical test,Male,,2022-04-28,2022-04-28
+,1556,PUS 472,,2,Hepatology,Sputum,,Ward,India,Biochemical test,Male,,2022-04-28,2022-04-28
+,1556,PUS 472,,2,Hepatology,Sputum,,Ward,India,Biochemical test,Male,,2022-04-28,2022-04-28
+,1556,PUS 472,,2,Hepatology,Sputum,,Ward,India,Biochemical test,Male,,2022-04-28,2022-04-28
+,1556,PUS 472,,2,Hepatology,Sputum,,Ward,India,Biochemical test,Male,,2022-04-28,2022-04-28

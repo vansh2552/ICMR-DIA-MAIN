@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Data Import App</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../static/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../static/assets/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="../static/assets/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../static/assets/vendors/typicons/typicons.css">
+    <link rel="stylesheet" href="../static/assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="../static/assets/vendors/jquery-bar-rating/css-stars.css">
+    <link rel="stylesheet" href="../static/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <!-- End Plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../static/assets/css/shared/style.css">
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="../static/assets/css/demo_11/style.css">
+    <!-- End Layout styles -->
+    <link rel="shortcut icon" href="../static/assets/images/favicon.png" />
+<style>
+mark {
+  background-color: white;
+  color: red;
+}
+</style>
+
+  </head>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:partials/_horizontal-navbar.html -->
+      <nav class="navbar horizontal-layout col-lg-12 col-12 p-0">
+        <div class="container d-flex flex-row nav-top">
+          <div class="text-center navbar-brand-wrapper d-flex align-items-top " id="p-logo">
+            <a class="navbar-brand brand-logo" href="index.html">
+              </a>
+            <!--<a class="navbar-brand brand-logo-mini" href="index.html">
+               </a>-->
+          </div>
+          <div class="navbar-menu-wrapper d-flex align-items-center">
+      <p class="data-import-text"></p>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item dropdown user-dropdown">
+                <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                  <div class="wrapper d-flex flex-column">
+                    <span class="profile-text">{{username}}</span>
+                   <!-- <span class="user-designation">Admin</span>-->
+                  </div>
+		<a href="{{ url_for('logout')}}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                 <!-- <div class="display-avatar bg-inverse-primary text-primary">A</div>-->
+                </a>
+               </li>
+            </ul>
+           
+          </div>
+        </div>
+        <div class="nav-bottom">
+          <div class="container">
+        <p style="text-align:center; margin-top: 1rem; font-weight:bold; font-size:24px; color:#fff;">Data Import App</p>
+      
+            
+          </div>
+        </div>
+      </nav>
+    
+    
+      <div class="container-fluid page-body-wrapper">
+        <div class="main-panel container">
+          <div class="content-wrapper">
+            <div class="row">
+              <div class="col-12 grid-margin d-none d-lg-block">
+                <div class="intro-banner">
+                  <div class="banner-image a3">
+                   <!-- <img src="assets/images/dashboard/banner_img.png" alt="banner image">-->
+                  </div>
+                  <div class="content-area">
+                    <h3 class="mb-0">Mapping of headers</h3>
+                    <!--<p class="mb-0">Need anything more to know more? Feel free to contact us at any point.</p>-->
+                  </div>
+                  <!--<a href="#" class="btn btn-light">Subscribe Now</a>-->
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Mapping of headers</h4>
+                    <!--<p class="card-description">Use class <code>.accordion-multiple-filled</code> for multiple filled styling</p>-->
+                    <div class="accordion accordion-multiple-filled" id="accordion-3" role="tablist">
+                      <div class="card">
+                        <div class="card-header" role="tab" id="headingOne-3">
+                          <h5 class="mb-0">
+                            <a data-toggle="collapse" href="#collapseOne-3" aria-expanded="false" aria-controls="collapseOne-3">Table1: Patient Information </a>
+                          </h5>
+                        </div>
+                        <div id="collapseOne-3" class="collapse" role="tabpanel" aria-labelledby="headingOne-3" data-parent="#accordion-3">
+                          <div class="card-body">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <form action="/login/mapping" method="POST" enctype = "multipart/form-data" class="forms-sample">
+                  <div class="form-group">
+                    <label for="exampleSelectInfo">Patient Registration No. <mark> *</mark></label>
+                    <select class="form-control border-info" id="exampleSelectInfo" name="patient_regnum" required>
+                          <option selected disabled value="">select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}" >{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelectInfo">Age</label>
+                    <select class="form-control border-info" id="exampleSelectInfo" name="patient_age_year">
+                          <option selected>select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelectInfo">Unit of Age (days_month_years)</label>
+                    <select class="form-control border-info" id="exampleSelectInfo" name="unit_of_age">
+                          <option selected>select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelectPrimary">Gender <mark> *</mark></label>
+                    <select class="form-control border-primary" id="exampleSelectPrimary" name="patient_gender" required>
+                    <option selected disabled value="">select header from the list</option>
+                      {% for col in fields[0:] %}
+                      <option value="{{col}}">{{col}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelectInfo">Date of Birth</label>
+                    <select class="form-control border-info" id="exampleSelectInfo" name="patient_dob">
+                          <option selected>select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelectSuccess">City/Town/Village</label>
+                    <select class="form-control border-success" id="exampleSelectSuccess" name="patient_city">
+                          <option selected>select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelectDanger">District<mark> *</mark></label>
+                    <select class="form-control border-danger" id="exampleSelectDanger" name="patient_district" required>
+                          <option selected disabled value="">select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelectWarning">State<mark> *</mark></label>
+                    <select class="form-control border-warning" id="exampleSelectWarning" name="patient_state" required>
+                          <option selected disabled value="">select header from the list</option>
+                          {% for col in fields[0:] %}`
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelectPrimary">Resident of<mark> *</mark></label>
+                    <select class="form-control border-primary" id="exampleSelectPrimary" name="patient_country" required>
+                    <option selected disabled value="">select header from the list</option>
+                      {% for col in fields[0:] %}
+                      <option value="{{col}}">{{col}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelectInfo">Location Type(Rural,Urban)</label>
+                    <select class="form-control border-info" id="exampleSelectInfo" name="patient_loctype">
+                          <option selected>select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  </div>
+                <!--</form>-->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" role="tab" id="headingTwo-3">
+                          <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" href="#collapseTwo-3" aria-expanded="false" aria-controls="collapseTwo-3"> Table2: Hospital Patient Relation </a>
+                          </h5>
+                        </div>
+                        <div id="collapseTwo-3" class="collapse" role="tabpanel" aria-labelledby="headingTwo-3" data-parent="#accordion-3">
+                          <div class="card-body">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <!--<form action="/mapping" method="POST" enctype = "multipart/form-data" class="forms-sample">-->
+                  <!--<div class="form-group">
+                    <label for="exampleSelectSuccess">{% for coldb2 in dbfields2[2] %}{{coldb2}}{% endfor %}<mark> *</mark></label>
+                    <select class="form-control border-success" id="exampleSelectSuccess" name="hosp_patient_regnum" required>
+                          <option selected disabled value=" ">select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  </div>
+                -->
+                  <div class="form-group">
+                    <label for="exampleSelectWarning">Date of OPD visit/Admission<mark> *</mark></label>
+                    <select class="form-control border-warning" id="exampleSelectWarning" name="hosp_adm_date" required>
+                          <option selected disabled value=" ">select header from the list</option>
+                            {% for col in fields[0:] %}
+                            <option value="{{col}}">{{col}}</option>
+                            {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <div class="sortable">
+                    <label for="exampleSelectInfo">Hospital Department<mark> *</mark></label>
+                    <select class="form-control border-info" id="exampleSelectInfo" name="hosp_dept" required>
+                          <option selected disabled value="">select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelectDanger">Prior Admission</label>
+                    <select class="form-control border-danger" id="exampleSelectDanger" name="hosp_prior_admission">
+                          <option selected>select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelectWarning">Location(OPD,WARD,ICU)<mark> *</mark></label>
+                    <select class="form-control border-warning" id="exampleSelectWarning" name="hosp_loc_type" required>
+                          <option selected disabled value="">select header from the list</option>
+                            {% for col in fields[0:] %}
+                            <option value="{{col}}">{{col}}</option>
+                            {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelectPrimary">Infection Type</label>
+                    <select class="form-control border-primary" id="exampleSelectPrimary" name="hosp_infec_type">
+                          <option selected>select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelectInfo">Clinical Diagnosis</label>
+                    <select class="form-control border-info" id="exampleSelectInfo" name="hosp_clinical_diag">
+                          <option selected>select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelectSuccess">Comorbidity</label>
+                    <select class="form-control border-success" id="exampleSelectSuccess" name="hosp_comorbidity">
+                          <option selected>select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelectDanger">Patients with Devices</label>
+                    <select class="form-control border-danger" id="exampleSelectDanger" name="hosp_devices_used">
+                          <option selected>select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  </div>
+                <!--</form>-->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" role="tab" id="headingThree-3">
+                          <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" href="#collapseThree-3" aria-expanded="false" aria-controls="collapseThree-3">Table3: Sample Imformation</a>
+                          </h5>
+                        </div>
+                        <div id="collapseThree-3" class="collapse" role="tabpanel" aria-labelledby="headingThree-3" data-parent="#accordion-3">
+                          <div class="card-body"> 
+              
+              <div class="row">
+                              <div class="col-md-12">
+                                <!--<form action="/mapping" method="POST" enctype = "multipart/form-data" class="forms-sample">-->
+                  <div class="form-group">
+                    <label for="exampleSelectInfo">Lab Sample ID<mark> *</mark></label>
+                    <select class="form-control border-info" id="exampleSelectInfo" name="sample_lab_id" required>
+                          <option selected disabled value="">select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelectDanger">Date of Sample<mark> *</mark></label>
+                    <select class="form-control border-danger" id="exampleSelectDanger" name="sample_collection_date" required>
+                          <option selected disabled value="">select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelectWarning">Type of Sample<mark> *</mark></label>
+                    <select class="form-control border-warning" id="exampleSelectWarning" name="sample_type" required>
+                          <option selected disabled value="">select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  <div class="form-group">
+                    <label for="exampleSelectDanger">Antibiotics/Antifungals(Taken for 3 days in last 1 Month)</label>
+                    <select class="form-control border-danger" id="exampleSelectDanger" name="sample_prescribed_antibiotic">
+                          <option selected>select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  </div>
+                <!--</form>-->
+                              </div>
+                            </div>
+              
+              </div>
+                        </div>
+          </div>
+                      <div class="card">
+                        <div class="card-header" role="tab" id="headingFour-3">
+                          <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" href="#collapseFour-3" aria-expanded="false" aria-controls="collapseFour-3"> Table 4: Susceptibility Testing </a>
+                          </h5>
+                        </div>
+                        <div id="collapseFour-3" class="collapse" role="tabpanel" aria-labelledby="headingFour-3" data-parent="#accordion-3">
+                          <div class="card-body">
+                            <div class="row">
+                              <div class="col-md-12">
+                               <!-- <form action="/mapping" method="POST" enctype = "multipart/form-data" class="forms-sample">-->
+                  <div class="form-group">
+                    <label for="exampleSelectPrimary">{% for coldb5 in dbfields5[3] %}{{coldb5}}{% endfor %}</label>
+                    <select class="form-control border-danger" id="exampleSelectDanger" name="susceptibility_antibiotic_id">
+                          <option selected>select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleSelectPrimary">Organism<mark> *</mark></label>
+                    <select class="form-control border-primary" id="exampleSelectPrimary" name="susceptibility_organism_id" required>
+                          <option selected disabled value="">select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelectPrimary">Identification Method<mark> *</mark></label>
+                    <select class="form-control border-danger" id="exampleSelectDanger" name="susceptibility_identification_method" required>
+                          <option selected disabled value="">select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelectPrimary">{% for coldb5 in dbfields5[11] %}{{coldb5}}{% endfor %}</label>
+                    <select class="form-control border-info" id="exampleSelectInfo" name="susceptibility_value" required>
+                          <option value="select header from the list">select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleSelectPrimary">{% for coldb5 in dbfields5[16] %}{{coldb5}}{% endfor %}</label>
+                    <select class="form-control border-info" id="exampleSelectInfo" name="susceptibility_validation_status" required>
+                          <option value="select header from the list">select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelectPrimary">{% for coldb5 in dbfields5[17] %}{{coldb5}}{% endfor %}</label>
+                    <select class="form-control border-success" id="exampleSelectSuccess" name="susceptibility_remarks">
+                          <option selected>select header from the list</option>
+                          {% for col in fields[0:] %}
+                          <option value="{{col}}">{{col}}</option>
+                          {% endfor %}
+                    </select>
+                  </div>
+                <!--</form>-->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>        
+          
+          <div class="row">
+              <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                <!--<form action="/mapping" method="POST" enctype = "multipart/form-data" class="forms-sample" >  -->           
+                  <div class="form-group">
+                  <div class="input-group col-xs-12">
+                    <!-- <input type="text" class="form-control file-upload-info" disabled placeholder="Upload File">
+                    <span class="input-group-append">
+                    <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+                    </span> -->
+                  </div>
+                  </div>
+                  <button type="submit" class="btn btn-success mr-2">Save mapping of headers</button>
+                  <!--<button class="btn btn-light">Cancel</button>-->
+                </form>
+			<script>
+				var b='{{msg}}'
+                                if(b!="")
+                                        alert(b);
+				}
+			</script>
+	
+
+                </div>
+              </div>
+              </div>
+            </div>          
+          
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          <footer class="footer">
+            <div class="container clearfix">
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2019 <a href="#">ISRM Division, ICMR</a>. All rights reserved.</span>
+              <!--<span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i>
+              </span>-->
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../static/assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="../static/assets/vendors/chart.js/Chart.min.js"></script>
+    <script src="../static/assets/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
+    <script src="../static/assets/vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="../static/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="../static/assets/js/shared/off-canvas.js"></script>
+    <script src="../static/assets/js/shared/hoverable-collapse.js"></script>
+    <script src="../static/assets/js/shared/settings.js"></script>
+    <script src="../static/assets/js/shared/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="../static/assets/js/shared/widgets.js"></script>
+    <script src="../static/assets/js/demo_11/dashboard.js"></script>
+    <script src="../static/assets/js/demo_11/script.js"></script>
+    <!-- End custom js for this page -->
+  </body>
+
+</html>
